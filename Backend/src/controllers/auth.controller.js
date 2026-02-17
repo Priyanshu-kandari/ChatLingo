@@ -102,3 +102,51 @@ export const LogOut = async (req,res) => {
     res.clearCookie("jwt")
     res.status(200).json({success: true, message:"Log Out successfully"})
 }
+
+export const onboard = async (req, res) => {
+    try{
+        const userId = req.user._id
+        const {fullname, bio , nativeLanguage, learningLanguage, location} = req.body
+
+        if(!fullname || !bio  || !nativeLanguage || !learningLanguage || !location){
+            return res.status(400).json({message: "all Fields are required",
+            missingField: [
+                !fullname && "fullname",
+                !bio && "bio",
+                !nativeLanguage && "nativeLanguage",
+                !learningLanguage && "learningLanguage",
+                !location && "location"
+            ].filter(Boolean)
+            })
+        }
+
+        const updatedUser = await userModel.findByIdAndUpdate(userId,{
+            ...req.body,
+            isOnboarded: true
+        }, {new:true})
+
+        if(!updatedUser){
+            return res.status(404).json({message:"user not found"})}
+
+        try{
+            await upsertStreamUser({
+                id: updatedUser._id.toString(),
+                name: updatedUser.fullname,
+                image: updatedUser.profilePic || ""
+            })
+            console.log(`Stream user updated after onboarding for ${updatedUser.fullname}`)
+
+        }catch(err){
+            console.error(`error updating stream user during onboarding: ${err}`)
+
+        }
+    
+        res.status(200).json({
+            success:true, user: updatedUser
+        })
+
+        }catch(err){
+            console.error("onboarding error:", err)
+            res.status(500).json({message: "internal server error"})
+        }
+}
