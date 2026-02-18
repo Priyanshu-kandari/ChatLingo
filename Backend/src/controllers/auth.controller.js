@@ -31,16 +31,18 @@ export const SignUp = async (req,res) => {
             email, fullname , password , profilePic: RandomAvatar
         })
 
-        try{
-            await upsertStreamUser({
-            id:newUser._id.toString(),
-            name:newUser.fullname,
-            image:newUser.profilePic || ""
-            })
-            console.log(`Stream user created for ${newUser.fullname}`)
-        }catch(err){
-            console.log("error creating stream user:", err)
-        }
+        upsertStreamUser({
+        id: newUser._id.toString(),
+        name: newUser.fullname,
+        image: newUser.profilePic || ""
+        })
+        .then(() => {
+            console.log(`Stream user created for ${newUser.fullname}`);
+        })
+        .catch((err) => {
+            console.error("Stream sync failed:", err.message);
+        });
+
 
         const token = jwt.sign({userID:newUser._id},process.env.JWT_SECRET_KEY,{
             expiresIn:"7d"

@@ -8,7 +8,7 @@ router.post("/signUp", SignUp)
 
 router.post("/LogIn", LogIn)
 
-router.post("/LogOut", LogOut)
+router.post("/LogOut" , protectRoute , LogOut)
 
 router.post("/onboarding", protectRoute ,onboard)
 

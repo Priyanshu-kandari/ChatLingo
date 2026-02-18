@@ -36,14 +36,14 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    isonboarded: {
+    isOnboarded: {
         type: Boolean,
         default: false,
     },
     friends:[
         {
             type:mongoose.Schema.Types.ObjectId,
-            ref: "User"
+            ref: "user"
         }
     ]
 },{timestamps:true})
