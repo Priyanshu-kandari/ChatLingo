@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 const NotificationPage = () => {
-  return (
-    <div>NotificationPage</div>
-  )
-}
+  // Placeholder notifications screen.
+  return <div>NotificationPage</div>;
+};
 
-export default NotificationPage
+export default NotificationPage;

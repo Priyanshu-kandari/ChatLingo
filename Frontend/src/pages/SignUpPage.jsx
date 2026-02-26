@@ -119,6 +119,7 @@ const SignUpPage = () => {
                   </div>
                 </div>
 
+                {/* Submit button */}
                 <button className="btn rounded-3xl btn-primary w-full" type="submit">
                   {isPending ? (
                     <>

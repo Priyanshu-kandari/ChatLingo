@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// Tracks sender/recipient state for friend request flows.
 const friendRequestSchema = new mongoose.Schema(
   {
     sender: {

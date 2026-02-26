@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 const ChatPage = () => {
-  return (
-    <div>ChatPage</div>
-  )
-}
+  // Placeholder chat screen.
+  return <div>ChatPage</div>;
+};
 
-export default ChatPage
+export default ChatPage;

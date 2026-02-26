@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 const CallPage = () => {
-  return (
-    <div>CallPage</div>
-  )
-}
+  // Placeholder call screen.
+  return <div>CallPage</div>;
+};
 
-export default CallPage
+export default CallPage;

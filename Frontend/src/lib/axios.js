@@ -1,6 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
+// Shared axios client for all frontend API calls.
 export const axiosInstance = axios.create({
-    baseURL: "http://localhost:3000/api",
-    withCredentials: true,
-})
+  // Use Vite dev proxy by default; can be overridden via VITE_API_BASE_URL.
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  withCredentials: true,
+});

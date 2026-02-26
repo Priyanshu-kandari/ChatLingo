@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 const LoginPage = () => {
-  return (
-    <div>LoginPage</div>
-  )
-}
+  // Placeholder login screen.
+  return <div>LoginPage</div>;
+};
 
-export default LoginPage
+export default LoginPage;
